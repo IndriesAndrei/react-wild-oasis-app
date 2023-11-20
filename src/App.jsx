@@ -1,28 +1,35 @@
-import styled from "styled-components";
-import GlobalStyles from "./styles/GlobalStyles";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
-import Heading from "./ui/Heading";
-
-const StyledApp = styled.div`
-  background-color: orangered;
-  padding: 20px;  
-`;
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import GlobalStyles from './styles/GlobalStyles';
+import Account from './pages/Account';
+import Bookings from './pages/Bookings';
+import Cabins from './pages/Cabins';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
+import Settings from './pages/Settings';
+import Users from './pages/Users';
+import AppLayout from "./ui/AppLayout";
 
 export default function App() {
   return (
     <>
-      {/* apply our GlobalStyles from GlobalStyles.js file (this does not accept children components) */}
       <GlobalStyles />
-      <StyledApp>
-        {/* we can also send props to our Styled Components */}
-        <Heading as="h1">The Wild Oasis</Heading>
-        <Heading as="h2">Check in and out</Heading>
-        <Button onClick={() => alert('Check in')}>Check in</Button>
-
-        <Heading as="h3">Form</Heading>
-        <Input type="number" placeholder="Number of guests" />
-      </StyledApp>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<Navigate replace to='dashboard' />} />
+            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='bookings' element={<Bookings />} />
+            <Route path='cabins' element={<Cabins />} />
+            <Route path='users' element={<Users />} />
+            <Route path='settings' element={<Settings />} />
+            <Route path='account' element={<Account />} />
+          </Route>
+          
+          <Route path='login' element={<Login />} />
+          <Route path='*' element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
     </>
-  );
+  )
 }
