@@ -5,22 +5,17 @@ import Modal from "../../ui/Modal";
 
 export default function AddCabin() {
     return (
-        <Modal>
-            {/* we can have multiple windows inside the same Modal component */}
-            <Modal.Open opens='cabin-form'>
-                <Button>Add new cabin</Button>
-            </Modal.Open>
-            <Modal.Window name='cabin-form'>
-                <CreateCabinForm />
-            </Modal.Window>
-
-            <Modal.Open opens='table'>
-                <Button>Show table</Button>
-            </Modal.Open>
-            <Modal.Window name='table'>
-                <CabinTable />
-            </Modal.Window>
-        </Modal>
+        <div>
+            <Modal>
+                {/* we can have multiple windows inside the same Modal component */}
+                <Modal.Open opens='cabin-form'>
+                    <Button>Add new cabin</Button>
+                </Modal.Open>
+                <Modal.Window name='cabin-form'>
+                    <CreateCabinForm />
+                </Modal.Window>
+            </Modal>
+        </div>
     )
 }
 
