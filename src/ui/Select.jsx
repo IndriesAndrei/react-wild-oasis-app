@@ -13,3 +13,13 @@ const StyledSelect = styled.select`
   font-weight: 500;
   box-shadow: var(--shadow-sm);
 `;
+
+// with ...props we can grab all the props, without the need to manually specify each of them
+export default function Select({options, value, onChange, ...props}) {
+  return (
+    <StyledSelect value={value} onChange={onChange} {...props}>
+      {options.map(option => <option value={option.value} key={option.value}>{option.label}</option>)}
+    </StyledSelect>
+  )
+}
+
